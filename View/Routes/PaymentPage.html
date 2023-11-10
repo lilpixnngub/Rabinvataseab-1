@@ -14,34 +14,90 @@
         </div>
 
         <div class="container">
-            <p> 1.Contact Information</p>
-            <form class="inputInfo">
-                <label for="fname">First Name</label><br>
-                <input type="text" id="fname" name="fname" class="form-field"><br>
-                <label for="lname">Last Name</label><br>
-                <input type="text" id="lname" name="lname" class="form-field"><br>
-                <label for="Phone">Phone</label><br>
-                <input type="text" id="phone" name="phone" class="form-field"><br>
-                <label for="email">Email</label><br>
-                <input type="text" id="email" name="email" class="form-field"><br>
-            </form>
+            <p> 1.Contact Information</p> 
+            <div class="inputInfo">
+                <div class="input"> 
+                    <label for="fname">First Name</label><br>
+                    <input type="text" id="fname" name="fname" class="form-field"><br>
+                </div>
+                
+                <div class="input">
+                    <label for="lname">Last Name</label><br>
+                    <input type="text" id="lname" name="lname" class="form-field"><br>
+                </div>
+
+                <div class="input"> 
+                    <label for="Phone">Phone</label><br>
+                    <input type="text" id="phone" name="phone" class="form-field"><br>
+                </div>    
+
+                <div class="input"> 
+                     <label for="email">Email</label><br>
+                    <input type="email" id="email" name="email" class="form-field"><br>
+                </div>
+  
+            </div>
+            
         </div>
 
-        <div class="container">
+        <div class="containerbottom">
             <p>2.Payment Method</p>
-            <form>
-                <p>Pay with QR Code</p>
-                <img src="Qrcode.png" alt="qrcode" >
-                <p>Rabinvataseab Festival Music Reservation </p>
-                <p>Please payment within 10 minutes </p>
-            </form>
+            <div class="paymentcontent">
+                    <p style="font-weight: 600;">Pay with QR Code</p>
+                    <img src="Qrcode.png" alt="qrcode" class="qrcode" style="display: flex;"><br><br>
+                    <p>Rabinvataseab Festival Music Reservation</p>
+                    <p>Please payment within 10 minutes</p>
+                    
+                    <div id="ten-countdown" class="timer"></div><br>
+
+                    <div class="choosefile">
+                        <form action="PaymentPage.html" >
+                        <input type="file" id="mySlip" name="slipfile" >
+                        </form> 
+                    </div>
+                    
+
+            </div>
+            
         </div>
 
-        <div>
-            <a href="BuyTicketPage.html">Cancel payment</a>
-            <a href="HistoryPurchase.html">Next</a>
+        <div class="bttnfoot">
+            <a href="BuyTicketPage.html" class="cancelbttn">Cancel payment</a>
+            <a href="HistoryPurchase.html" class="nextbttn">Next</a>
         </div>
-          
+        
+        <script>
+            function countdown( elementName, minutes, seconds )
+            {
+                var element, endTime, hours, mins, msLeft, time;
+
+                function twoDigits( n )
+                {
+                    return (n <= 9 ? "0" + n : n);
+                }
+
+                function updateTimer()
+                {
+                    msLeft = endTime - (+new Date);
+                    if ( msLeft < 1000 ) {
+                        element.innerHTML = "Time is up!";
+                    } else {
+                        time = new Date( msLeft );
+                        hours = time.getUTCHours();
+                        mins = time.getUTCMinutes();
+                        element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+                        setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                    }
+                }
+
+                element = document.getElementById( elementName );
+                endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+                updateTimer();
+            }
+
+            countdown( "ten-countdown", 10, 0 );
+            
+        </script>
             
     </header>
 </body>

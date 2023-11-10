@@ -266,12 +266,13 @@
     border:none;
     border-radius: 10px;
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
     padding:20px;
     color:black;
     margin-top: 200px;
     margin-left:  170px;
     cursor: pointer;
+    
     
 }
 
