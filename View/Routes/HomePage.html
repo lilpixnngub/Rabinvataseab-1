@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/View/Routes/stylesheet/HomePage.css">
+
+    <title>Rabinvateseab Music Festival Reserve Ticket</title>
+</head>
+<body>
+    <header>
+
+            <!--header-->
+            <div class="navbar">
+                <img src="/View/image/Logo_rabin.png" alt="Logo" width="230" height="250">
+                <ul style="float: right;">
+                    <li> <a href="HomePage.html">Home</a> </li>
+                    <li> <a href="EventsPage.html">Events</a> </li>
+                    <li> <a href="PrivilegesPage.html" >Privileges</a></li>
+                    <li> <button class ="userbutton" href="UserPage.html">Login</button></li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="section">
+
+            <div class="slider">
+                <div class="slide">
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                
+                <div class="st first"> 
+                    <img src="/View/image/IMG_4838.jpg" alt="" >  
+                </div>
+
+                <div class="st"> 
+                    <img src="/View/image/IMG_3.jpg" alt="" >  
+                </div>
+
+                <div class="nav-auto">
+                    <div class="a-b1"></div>
+                    <div class="a-b2"></div>
+                </div>
+
+                </div>
+
+                <div class="nav-m">
+                    <label for="radio1" class="m-btn"></label>
+                    <label for="radio2" class="m-btn"></label>
+
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+            var counter=1;
+
+            setInterval(function(){
+                document.getElementById('radio'+counter).checked=true;
+                counter++;
+                if(counter>2){
+                    counter = 1;
+                }
+            },5000);
+
+        </script>
+
+        <div class="topnav">
+        <a href="HomePage.html" class="active">Hot Events!</a>
+        <a href="ComingsoonPage.html">Coming soon</a>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <img src="/View/image/IMG_4838.jpg">
+                <div class="card-content">
+                    <h3>Boy Srichai- pink mhorlam</h3>
+                    <p>5 Jun 2023 @Nakhon Ratchasima</p>
+                    <a href="#" class="btn">Buy Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/View/image/IMG_3.jpg">
+                <div class="card-content">
+                    <h3>Boy Srichai & Anne Aoradee- Red mhorlam</h3>
+                    <p>29 Jun 2023 @Kamphaeng Phet</p>
+                    <a href="#" class="btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+
+     <footer>
+        <img src="/View/image/Logo_rabin.png" width="100px" height="100px"><br>
+        <p3>Rabinvateseab</p3><br>
+        <p4>Call center 012-2365456</p4>
+       
+     </footer>
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
