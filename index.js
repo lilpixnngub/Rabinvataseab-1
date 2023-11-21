@@ -62,6 +62,22 @@ app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'View', 'Routes', 'AboutPage.html'));
 })
 
+app.get('/fetchConcertData', (req, res) => {
+
+  const SELECT_CONCERT_DATA_QUERY = 'SELECT Concert_name, Date FROM Concert';
+
+  connection.query(SELECT_CONCERT_DATA_QUERY, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ success: false, message: 'Error retrieving data from the database' });
+    } else {
+      res.json({ success: true, concerts: results });
+    }
+    console.log(results);
+  });
+});
+
+
+
 app.post('/login', (req, res) => {
   const { Email, Password } = req.body;
 
