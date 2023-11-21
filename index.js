@@ -24,30 +24,26 @@ app.get('/', (req, res) => {
 
 app.post('/signup', (req, res) => {
   const {
-    F_name,
-    L_name,
+    Fullname,
     Email,
     Address,
     DoB,
-    Username,
     Password,
     Phone_no
   } = req.body;
 
-  const INSERT_MEMBER_QUERY = `INSERT INTO Member (F_name, L_name, Email, Address, DoB, Username, Password, Phone_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  const INSERT_MEMBER_QUERY = `INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no) VALUES (?, ?, ?, ?, ?, ?)`;
 
   connection.execute(
     INSERT_MEMBER_QUERY,
-    [F_name, L_name, Email, Address, DoB, Username, Password, Phone_no],
+    [Fullname, Email, Address, DoB, Password, Phone_no],
     (error, results, fields) => {
         console.log('Data inserted successfully:', results);
         res.redirect('/log');
     });
 });
 
-app.get('/start', (req, res) => {
-  res.sendFile(path.join(__dirname, 'View', 'Routes', 'StartPage.html'));
-})
+
 app.get('/log', (req, res) =>{
     res.sendFile(path.join(__dirname, 'View', 'Routes','LoginPage.html'));
 })
@@ -56,6 +52,9 @@ app.get('/home', (req, res) => {
 })
 app.get('/forgot', (req, res) => {
     res.sendFile(path.join(__dirname, 'View', 'Routes', 'ForgotpassPage.html'));
+})
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'View', 'Routes', 'AboutPage.html'));
 })
 
 app.post('/login', (req, res) => {
@@ -73,7 +72,7 @@ app.post('/login', (req, res) => {
 
         // Compare the provided password with the hashed password
         if (hashedPasswordFromDB === Password) {
-          res.redirect('/start');
+          res.redirect('/home');
         } else {
           res.send('Invalid password');
         }
@@ -94,8 +93,7 @@ app.post('/forgotpassword', (req, res) => {
       console.error('Password update error:', err);
       res.send('Error updating password');
     } else {
-      res.status(200).send('Password reset successfully');
-      res.redirect('/home');
+      res.redirect('/home')
     }
   });
 });
