@@ -32,16 +32,24 @@ app.post('/signup', (req, res) => {
     Phone_no
   } = req.body;
 
-  const INSERT_MEMBER_QUERY = `INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no) VALUES (?, ?, ?, ?, ?, ?)`;
+  const INSERT_MEMBER_QUERY = `
+  INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no)
+  VALUES (?, ?, ?, ?, AES_ENCRYPT(?, SHA1('74a11977hJAHDfea')), ?)`;
 
-  connection.execute(
-    INSERT_MEMBER_QUERY,
-    [Fullname, Email, Address, DoB, Password, Phone_no],
-    (error, results, fields) => {
-        console.log('Data inserted successfully:', results);
-        res.redirect('/log');
-    });
+connection.query(
+  INSERT_MEMBER_QUERY,
+  [Fullname, Email, Address, DoB, Password, Phone_no],
+  (error, results, fields) => {
+    if (error) {
+      console.error('Error inserting data into the database:', error);
+      res.status(500).json({ message: `Error inserting data into the database: ${error.message}` });
+    } else {
+      res.redirect('/log');
+    }
+  }
+  );
 });
+
 
 
 app.get('/log', (req, res) =>{
@@ -88,12 +96,17 @@ app.post('/forgotpassword', (req, res) => {
 
   const UPDATE_PASSWORD_QUERY = 'UPDATE Member SET Password = ? WHERE Email = ?';
 
-  connection.execute(UPDATE_PASSWORD_QUERY, [Password, Email], (err) => {
+  connection.execute(UPDATE_PASSWORD_QUERY, [Password, Email], (err, results) => {
     if (err) {
       console.error('Password update error:', err);
       res.send('Error updating password');
     } else {
-      res.redirect('/home')
+      if(results.length>0){
+        res.redirect('/home')
+      }
+      else {
+        res.status(500).send('error')
+      }
     }
   });
 });
