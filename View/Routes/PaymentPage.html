@@ -14,90 +14,42 @@
         </div>
 
         <div class="container">
-            <p> 1.Contact Information</p> 
+            <p> Payment Method</p>
+            <form action="#">
             <div class="inputInfo">
                 <div class="input"> 
-                    <label for="fname">First Name</label><br>
-                    <input type="text" id="fname" name="fname" class="form-field"><br>
+                    <label for="cardno">Card no.</label><br>
+                    <input type="text" id="cardno" name="cardno" class="form-field" placeholder="xxx-xxx-xxx"><br>
                 </div>
                 
                 <div class="input">
-                    <label for="lname">Last Name</label><br>
-                    <input type="text" id="lname" name="lname" class="form-field"><br>
+                    <label for="Fullname">Name</label><br>
+                    <input type="text" id="Fullname" name="Fullname" class="form-field"><br>
                 </div>
 
                 <div class="input"> 
-                    <label for="Phone">Phone</label><br>
-                    <input type="tel" id="phone" name="phone" class="form-field"><br>
+                    <label for="expireddate">Expired Date</label><br>
+                    <input type="date" id="expireddate" name="expireddate" class="form-field"><br>
                 </div>    
 
                 <div class="input"> 
-                     <label for="email">Email</label><br>
-                    <input type="email" id="email" name="email" class="form-field"><br>
+                     <label for="cvv">CCV</label><br>
+                    <input type="text" id="cvv" name="cvv" placeholder="xxx" class="form-field"><br>
                 </div>
   
             </div>
+            </form> 
             
         </div>
 
-        <div class="containerbottom">
-            <p>2.Payment Method</p>
-            <div class="paymentcontent">
-                    <p style="font-weight: 600;">Pay with QR Code</p>
-                    <img src="/View/image/Qrcode.png" alt="qrcode" class="qrcode" style="display: flex;"><br><br>
-                    <p>Rabinvataseab Festival Music Reservation</p>
-                    <p>Please payment within 10 minutes</p>
-                    
-                    <div id="ten-countdown" class="timer"></div><br>
-
-                    <div class="choosefile">
-                        <form action="PaymentPage.html" >
-                        <input type="file" id="mySlip" name="slipfile" >
-                        </form> 
-                    </div>
-                    
-
-            </div>
-            
-        </div>
+        
 
         <div class="bttnfoot">
             <a href="BuyTicketPage.html" class="cancelbttn">Cancel payment</a>
             <a href="HistoryPurchase.html" class="nextbttn">Next</a>
         </div>
         
-        <script>
-            function countdown( elementName, minutes, seconds )
-            {
-                var element, endTime, hours, mins, msLeft, time;
-
-                function twoDigits( n )
-                {
-                    return (n <= 9 ? "0" + n : n);
-                }
-
-                function updateTimer()
-                {
-                    msLeft = endTime - (+new Date);
-                    if ( msLeft < 1000 ) {
-                        element.innerHTML = "Time is up!";
-                    } else {
-                        time = new Date( msLeft );
-                        hours = time.getUTCHours();
-                        mins = time.getUTCMinutes();
-                        element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
-                        setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-                    }
-                }
-
-                element = document.getElementById( elementName );
-                endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-                updateTimer();
-            }
-
-            countdown( "ten-countdown", 20, 0 );
-            
-        </script>
+    
             
     </header>
 </body>
