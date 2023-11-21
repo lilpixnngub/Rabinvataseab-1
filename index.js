@@ -33,12 +33,9 @@ app.post('/signup', (req, res) => {
   } = req.body;
 
   const INSERT_MEMBER_QUERY = `
-  INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no)
-  VALUES (?, ?, ?, ?, AES_ENCRYPT(?, SHA1('74a11977hJAHDfea')), ?)`;
+  INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no) VALUES (?, ?, ?, ?, AES_ENCRYPT(?, SHA1('74a11977hJAHDfea')), ?)`;
 
-connection.query(
-  INSERT_MEMBER_QUERY,
-  [Fullname, Email, Address, DoB, Password, Phone_no],
+  connection.query(INSERT_MEMBER_QUERY, [Fullname, Email, Address, DoB, Password, Phone_no],
   (error, results, fields) => {
     if (error) {
       console.error('Error inserting data into the database:', error);
@@ -68,28 +65,40 @@ app.get('/about', (req, res) => {
 app.post('/login', (req, res) => {
   const { Email, Password } = req.body;
 
-  // Query to retrieve hashed password from the database based on the provided email
-  const SELECT_USER_QUERY = 'SELECT Password FROM Member WHERE Email = ?';
+  // Query to retrieve encrypted password from the database based on the provided email
+  const SELECT_ENCRYPTED_PASSWORD_QUERY = `SELECT AES_ENCRYPT(?, SHA1('74a11977hJAHDfea')) AS encrypted_password FROM Member WHERE Email = ?`;
 
-  connection.query(SELECT_USER_QUERY, [Email], (error, results, fields) => {
+  connection.query(SELECT_ENCRYPTED_PASSWORD_QUERY, [Password, Email], (error, results, fields) => {
     if (error) {
       res.status(500).json({ message: 'Error retrieving data from the database' });
     } else {
       if (results.length > 0) {
-        const hashedPasswordFromDB = results[0].Password;
+        const encryptedPasswordFromDB = results[0].encrypted_password;
 
-        // Compare the provided password with the hashed password
-        if (hashedPasswordFromDB === Password) {
-          res.redirect('/home');
-        } else {
-          res.send('Invalid password');
-        }
+        // Query to check if decrypted password matches the provided password
+        const SELECT_USER_QUERY = `SELECT * FROM Member WHERE Email = ? AND AES_DECRYPT(Password, SHA1('74a11977hJAHDfea')) = ?`;
+
+        connection.query(SELECT_USER_QUERY, [Email, Password], (error, results, fields) => {
+          if (error) {
+            res.status(500).json({ message: 'Error retrieving data from the database' });
+          } else {
+            if (results.length > 0) {
+              res.redirect('/home');
+            } else {
+              res.send('Invalid password');
+            }
+          }
+        });
       } else {
         res.send('User not found');
       }
     }
   });
 });
+
+
+
+
 
 app.post('/forgotpassword', (req, res) => {
   const { Email, Password } = req.body;
