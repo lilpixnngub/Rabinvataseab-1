@@ -63,7 +63,7 @@
         
         <div class="container">
             <div class="card">
-                <img id="api-image" alt="API Image">
+                <img src ="/View/image/IMG_3.jpg" alt="IMG_3.jpg">
                 <div class="card-content">
                     <h3><span id="Concert_name"></span></h3>
                     <p><span id="date"></span></p>
@@ -85,7 +85,7 @@
                 .then(response => response.blob())
                 .then(blob => {
                     const url = URL.createObjectURL(blob);
-                    document.getElementById('api-image').src = url;
+                    document.getElementById('IMG_3.jpg').src = url;
                 })
                 .catch(error => console.error('Error fetching image:', error));
     
