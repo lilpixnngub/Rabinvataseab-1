@@ -27,12 +27,23 @@
             <hr><br>
             
             <div class="container">
-                <img src="/View/image/Morlam3.jpeg" alt="Banner" width="300" height="150" class="banner">
+                <img src="/View/image/IMG_4838.jpg" alt="Banner" width="300" height="250" class="banner">
                 <div class="rightcontainer">
-                    <h3 style="padding-left:20px;">Rabinvateseab Festival</h3>
-                    <p style="padding-left: 20px; padding-top: 0px;">Order No.</p>
+                    <p>Date </p> <span id="data"></span>
+                    <p>Quality</p> <p id="data1"></p>
+                    <p>Zone </p> <p id="data2"></p>
+                    <p >Total price </span></p>
                 </div>
             </div>
+
+            <script>
+                    
+                document.getElementById("data").innerHTML=localStorage.getItem("mydateTick");
+                document.getElementById("data1").innerHTML=localStorage.getItem("mynumberTick");
+                document.getElementById("data2").innerHTML=localStorage.getItem("myzoneTick");
+            
+            </script>
+            
 
             <!--footer-->
             
@@ -57,7 +68,10 @@
                     <h3>Call center</h3>
                     <h2>123-456-7890</h2>
                 </div>
+                
+                
 
+                
             </div>
 
     </header>
