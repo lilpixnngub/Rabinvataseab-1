@@ -32,16 +32,21 @@ app.post('/signup', (req, res) => {
     Phone_no
   } = req.body;
 
-  const INSERT_MEMBER_QUERY = `INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no) VALUES (?, ?, ?, ?, ?, ?)`;
+  const INSERT_MEMBER_QUERY = `
+  INSERT INTO Member (Fullname, Email, Address, DoB, Password, Phone_no) VALUES (?, ?, ?, ?, AES_ENCRYPT(?, SHA1('74a11977hJAHDfea')), ?)`;
 
-  connection.execute(
-    INSERT_MEMBER_QUERY,
-    [Fullname, Email, Address, DoB, Password, Phone_no],
-    (error, results, fields) => {
-        console.log('Data inserted successfully:', results);
-        res.redirect('/log');
-    });
+  connection.query(INSERT_MEMBER_QUERY, [Fullname, Email, Address, DoB, Password, Phone_no],
+  (error, results, fields) => {
+    if (error) {
+      console.error('Error inserting data into the database:', error);
+      res.status(500).json({ message: `Error inserting data into the database: ${error.message}` });
+    } else {
+      res.redirect('/log');
+    }
+  }
+  );
 });
+
 
 
 app.get('/log', (req, res) =>{
@@ -57,25 +62,49 @@ app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'View', 'Routes', 'AboutPage.html'));
 })
 
+app.get('/fetchConcertData', (req, res) => {
+
+  const SELECT_CONCERT_DATA_QUERY = 'SELECT Concert_name, Date FROM Concert';
+
+  connection.query(SELECT_CONCERT_DATA_QUERY, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ success: false, message: 'Error retrieving data from the database' });
+    } else {
+      res.json({ success: true, concerts: results });
+    }
+    console.log(results);
+  });
+});
+
+
+
 app.post('/login', (req, res) => {
   const { Email, Password } = req.body;
 
-  // Query to retrieve hashed password from the database based on the provided email
-  const SELECT_USER_QUERY = 'SELECT Password FROM Member WHERE Email = ?';
+  // Query to retrieve encrypted password from the database based on the provided email
+  const SELECT_ENCRYPTED_PASSWORD_QUERY = `SELECT AES_ENCRYPT(?, SHA1('74a11977hJAHDfea')) AS encrypted_password FROM Member WHERE Email = ?`;
 
-  connection.query(SELECT_USER_QUERY, [Email], (error, results, fields) => {
+  connection.query(SELECT_ENCRYPTED_PASSWORD_QUERY, [Password, Email], (error, results, fields) => {
     if (error) {
       res.status(500).json({ message: 'Error retrieving data from the database' });
     } else {
       if (results.length > 0) {
-        const hashedPasswordFromDB = results[0].Password;
+        const encryptedPasswordFromDB = results[0].encrypted_password;
 
-        // Compare the provided password with the hashed password
-        if (hashedPasswordFromDB === Password) {
-          res.redirect('/home');
-        } else {
-          res.send('Invalid password');
-        }
+        // Query to check if decrypted password matches the provided password
+        const SELECT_USER_QUERY = `SELECT * FROM Member WHERE Email = ? AND AES_DECRYPT(Password, SHA1('74a11977hJAHDfea')) = ?`;
+
+        connection.query(SELECT_USER_QUERY, [Email, Password], (error, results, fields) => {
+          if (error) {
+            res.status(500).json({ message: 'Error retrieving data from the database' });
+          } else {
+            if (results.length > 0) {
+              res.redirect('/home');
+            } else {
+              res.send('Invalid password');
+            }
+          }
+        });
       } else {
         res.send('User not found');
       }
@@ -83,17 +112,26 @@ app.post('/login', (req, res) => {
   });
 });
 
+
+
+
+
 app.post('/forgotpassword', (req, res) => {
   const { Email, Password } = req.body;
 
   const UPDATE_PASSWORD_QUERY = 'UPDATE Member SET Password = ? WHERE Email = ?';
 
-  connection.execute(UPDATE_PASSWORD_QUERY, [Password, Email], (err) => {
+  connection.execute(UPDATE_PASSWORD_QUERY, [Password, Email], (err, results) => {
     if (err) {
       console.error('Password update error:', err);
       res.send('Error updating password');
     } else {
-      res.redirect('/home')
+      if(results.length>0){
+        res.redirect('/home')
+      }
+      else {
+        res.status(500).send('error')
+      }
     }
   });
 });

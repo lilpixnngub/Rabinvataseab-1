@@ -23,6 +23,7 @@
 
         </header>
 
+        <!--Content-->
         <section class="section">
 
             <div class="slider">
@@ -52,42 +53,59 @@
                 </div>
             </div>
         </section>
-        <script type="text/javascript">
-            var counter=1;
-
-            setInterval(function(){
-                document.getElementById('radio'+counter).checked=true;
-                counter++;
-                if(counter>2){
-                    counter = 1;
-                }
-            },5000);
-
-        </script>
+        
 
         <div class="topnav">
         <a href="HomePage.html" class="active">Hot Events!</a>
-        <a href="ComingsoonPage.html">Coming soon</a>
+        
         </div>
 
+        
         <div class="container">
             <div class="card">
-                <img src="/View/image/IMG_4838.jpg">
+                <img id="api-image" alt="API Image">
                 <div class="card-content">
-                    <h3>Boy Srichai- pink mhorlam</h3>
-                    <p>5 Jun 2023 @Nakhon Ratchasima</p>
-                    <a href="BuyTicketPage.html" class="btn">Buy Now</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/View/image/IMG_3.jpg">
-                <div class="card-content">
-                    <h3>Boy Srichai & Anne Aoradee- Red mhorlam</h3>
-                    <p>29 Jun 2023 @Kamphaeng Phet</p>
+                    <h3><span id="Concert_name"></span></h3>
+                    <p><span id="date"></span></p>
                     <a href="BuyTicketPage.html" class="btn">Buy Now</a>
                 </div>
             </div>
         </div>
+    
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const ccname = params.get('ccname');
+            const ccdate = params.get('ccdate');
+    
+            document.getElementById('Concert_name').innerText = ccname;
+            document.getElementById('date').innerText = ccdate;
+    
+            // Example: Fetch an image from a URL (adjust the URL)
+            fetch('https://via.placeholder.com/150')
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    document.getElementById('api-image').src = url;
+                })
+                .catch(error => console.error('Error fetching image:', error));
+    
+            // Fetch concert data
+            fetch('/fetchConcertData')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Process the concerts array on the frontend
+                        console.log(data.concerts);
+                    } else {
+                        // Handle error case
+                        console.error(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching concert data:', error);
+                });
+        </script>
+    
 
      <!--footer-->
      <div class="footer">
@@ -115,11 +133,18 @@
     </div>
 
 
+    <script type="text/javascript">
+        var counter=1;
 
+        setInterval(function(){
+            document.getElementById('radio'+counter).checked=true;
+            counter++;
+            if(counter>2){
+                counter = 1;
+            }
+        },5000);
 
-
-
-
+    </script>
     
 </body>
 </html>
