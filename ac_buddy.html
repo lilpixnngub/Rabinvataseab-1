@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #1c1c1c;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #BF00FF;
+            border-bottom: 2px solid #BF00FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .hero span.name-highlight {
+            color: #BF00FF;
+        }
+        .hero p {
+            color: #aaa;
+            margin: 20px 0 30px;
+        }
+        .download-cv {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #BF00FF;
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        .download-cv:hover {
+            background-color: #fff;
+        }
+
+        /* Project Section */
+        .projects {
+            padding: 50px 0;
+            background-color: #1c1c1c;
+            text-align: center;
+        }
+        .projects h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .project-cards {
+            display: block;
+            justify-content: center;
+            gap: 20px;
+            padding-left: 10%;
+            
+        }
+        .card {
+            background-color: #000;
+            border: 2px solid #BF00FF;
+            border-radius: 10px;
+            padding: 30px;
+            justify-content: center;
+            width: 80%;
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #BF00FF;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        .card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #BF00FF;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .card a:hover {
+            background-color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="activities.html"  class="active">Activities</a></li>
+        <li><a href="contact.html" style="color: #000; background-color: #BF00FF; padding: 10px 20px; border-radius: 30px;">Contact Me</a></li>
+    </ul>
+</nav>
+
+<!-- Content Section -->
+<section class="projects" id="projects">
+    <h2 style="text-align: left; margin-left: 100px;"> Buddy Exchange</h2>
+    <div class="project-cards" >
+        <!-- Card 1 -->
+        <div class="card">
+            <h3 style="text-align: left; margin-left: 20px;" > Supported exchange students </h3>
+            <p style="text-align: left; margin-left: 20px;"> Supported exchange students by providing care and guidance during their stay. 
+                Assisted in organizing and conducting buddy orientation at my university to enhance their integration and experience.</p>
+            <img src="/image/buddyorient.jpg" width ="800" style="padding: 20px;">
+            <p>Picture from instagram : siitu </p>
+            <img src="/image/buddy-orientday.JPG" width ="800" style="padding: 20px;">
+        </div>
+        
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2024 Vichayada Portfolio | Connect with me: <a href="mailto:youremail@example.com" style="color: #BF00FF;">vichayadapin@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

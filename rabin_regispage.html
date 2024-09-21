@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheet/SignupPage.css">
+
+    <title>Sign up</title>
+
+    <style>
+        .card-back {
+           background-color: #000;
+           width: 100%;
+           height: 50px;
+           
+           transition: transform 0.3s ease;
+       }
+       .card-back:hover {
+           transform: scale(1.05);
+       }
+      
+       .card-back a {
+           display: inline-block;
+           padding: 10px 20px;
+           color: #ffffff;
+           text-align: center;
+           border-radius: 5px;
+       }
+       .card-back a:hover {
+           background-color: #BF00FF;;
+       }
+   </style>
+    
+</head>
+<body>
+    
+    <div class="container">
+        <div class="card-back">
+            <a href="index.html" class="card-back">Back to Vichayada Portfolio</a> 
+       </div>
+    <img src="/image/Logo_rabin.png" width="160px"; height="160px";>
+        <div class="title">Create an Account</div>
+        <p>Please fill an information</p>
+        <form action="/signup" method ="post">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Name</span>
+                    <input type="text" name = "Fullname" placeholder="Enter your name" required>
+                </div> 
+                <div class="input-box">
+                    <span class="details">Date of Birth</span>
+                    <input type="date" name = "DoB"  required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Phone number</span>
+                    <input type="tel" name = "Phone_no" placeholder="Enter your phone number" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Address</span>
+                    <input type="text" name = "Address" placeholder="Enter your address" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" name = "Email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" name = "Password" placeholder="Enter your password" required>
+                </div>
+                <div class="card" >
+                    <div class = "card-content" >
+                        <a href="rabin_homepage.html" class="btn" >Submit</a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </form>
+    </div>
+
+    
+
+
+</body>
+</html>

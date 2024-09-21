@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #1c1c1c;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #BF00FF;
+            border-bottom: 2px solid #BF00FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .hero span.name-highlight {
+            color: #BF00FF;
+        }
+        .hero p {
+            color: #aaa;
+            margin: 20px 0 30px;
+        }
+        .download-cv {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #BF00FF;
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        .download-cv:hover {
+            background-color: #fff;
+        }
+
+        /* Project Section */
+        .projects {
+            padding: 50px 0;
+            background-color: #1c1c1c;
+            text-align: center;
+        }
+        .projects h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .project-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background-color: #000;
+            border: 2px solid #BF00FF;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #BF00FF;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        .card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #BF00FF;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .card a:hover {
+            background-color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="activities.html" >Activities</a></li>
+        <li><a href="contact.html" style="color: #000; background-color: #BF00FF; padding: 10px 20px; border-radius: 30px;">Contact Me</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+   
+    <div class="profile-picture"> <img src="/image/me_port.png" width="20%"></div>
+    <h1>Hi, I'm <span class="name-highlight">Vichayada</span></h1>
+    <p> Fourth-year Digital Engineering major with a minor in Software Application Development at SIIT, Thammasat University <br> Eager to apply my skills and continue learning
+        in a dynamic environment through an internship opportunity </p>
+    <a href="/image/ResumeVichayada.pdf" download="resumevichayada.pdf" class="download-cv" > Download Resume</a>
+    
+
+</section>
+
+<!-- Projects Section -->
+<section class="projects" id="projects">
+    <h2>Contact me</h2>
+    <div class="project-cards">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="/image/linkedinlogo.png" width="30%"> <br>
+            <a href="linkedin.com/in/vichayada-pinkoompee-759792323">LinkedIn</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            
+            <img src="/image/mail-logo.png" width="30%"> <br>
+            <a href="mailto:vichayadapin@gmail.com" >
+                vichayadapin@gmail.com
+            </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="/image/phonelogo.png" width="30%"> <br>
+            <a href="tel:+66902012358">+66902012358</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2024 Vichayada Portfolio | Connect with me: <a href="mailto:youremail@example.com" style="color: #BF00FF;">vichayadapin@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

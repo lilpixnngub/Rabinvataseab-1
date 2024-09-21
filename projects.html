@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #1c1c1c;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #BF00FF;
+            border-bottom: 2px solid #BF00FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .hero span.name-highlight {
+            color: #BF00FF;
+        }
+        .hero p {
+            color: #aaa;
+            margin: 20px 0 30px;
+        }
+        .download-cv {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #BF00FF;
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        .download-cv:hover {
+            background-color: #fff;
+        }
+
+        /* Project Section */
+        .projects {
+            padding: 50px 0;
+            background-color: #1c1c1c;
+            text-align: center;
+        }
+        .projects h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .project-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background-color: #000;
+            border: 2px solid #BF00FF;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #BF00FF;
+            margin-bottom: 10px;
+        }
+        .card h4 {
+            color: #ffffff;
+            margin-bottom: 0;
+            
+        }
+        .card p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        .card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #BF00FF;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .card a:hover {
+            background-color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="contact.html" style="color: #000; background-color: #BF00FF; padding: 10px 20px; border-radius: 30px;">Contact Me</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <h1><span class="name-highlight">My Projects</span></h1>
+    <p>Some projects are prototype</p>
+</section>
+
+<!-- Projects Section -->
+<section class="projects" id="projects">
+    <div class="project-cards">
+        <!-- Card 1 -->
+        <div class="card">
+            <h3>Rabinvataseab</h3>
+            <h4 >Role: UX/UI Designer and Front-End Developer </h4>
+            <p>Static website for booking tickets, featuring seat selection, price calculation, and banner display.</p>
+            <a href="pj_rabin.html">View Project</a>
+        </div>
+
+        <!-- Card 2 -->
+
+        <div class="card">
+            <h3>FasteWood</h3>
+            <h4 >Role: UX/UI Designer</h4>
+            <p> 
+                FasteWood is discounted food-delivery mobile applicaiton Mock-up, by Offer discounted sales on surplus or soon-to-expire food items through an app also
+                raise consumer awareness about food waste
+            </p>
+            <a href="pj_fastewood.html">View Project</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <h3>School Bus</h3>
+            <h4 >Role: UX/UI Designer</h4>
+            <p>A project designed to optimize school bus routes for safer and more efficient transportation of students</p>
+            <a href="pj_schoolbus.html">View Project</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2024 Vichayada Portfolio | Connect with me: <a href="mailto:youremail@example.com" style="color: #BF00FF;">vichayadapin@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
